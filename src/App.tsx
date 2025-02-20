@@ -71,6 +71,8 @@ export default function KeyGenerator() {
   return (
     <div>
       <div>
+        <h1>PGP Key Generator</h1>
+        <p>Part of rdjpalmer's encryption project? <a href="https://github.com/rdjpalmer/pgp-generator/issues/2" target="_blank" rel="nonoopener noreferrer">Publish your public key here on GitHub</a></p>.
         <input
           type="text"
           placeholder="Name"
