@@ -70,48 +70,50 @@ export default function KeyGenerator() {
 
   return (
     <div>
-      <div>
-        <h1>PGP Key Generator</h1>
-        <p>Part of rdjpalmer's encryption project? <a href="https://github.com/rdjpalmer/pgp-generator/issues/2" target="_blank" rel="nonoopener noreferrer">Publish your public key here on GitHub</a></p>.
-        <input
-          type="text"
-          placeholder="Name"
-          value={state.name}
-          onChange={(e) => dispatch({ type: 'SET_NAME', payload: e.target.value })}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={state.email}
-          onChange={(e) => dispatch({ type: 'SET_EMAIL', payload: e.target.value })}
-        />
-        <button onClick={generateKeysAndCertificate}>Generate Keys & Certificate</button>
-      </div>
-      <div>
-        <button
-          onClick={() => download('public-key', state.publicKey)}
-          disabled={!state.publicKey}
-        >
-          Download Public Key
-        </button>
-        <button
-          onClick={() => download('private-key', state.privateKey)}
-          disabled={!state.privateKey}
-        >
-          Download Private Key
-        </button>
-        <button
-          onClick={() => download('revocation-certificate', state.revocationCertificate)}
-          disabled={!state.revocationCertificate}
-        >
-          Download Revocation Certificate
-        </button>
-        <button
-          onClick={() => download('pgp-keys', `${state.publicKey}\n${state.privateKey}`)}
-          disabled={!state.publicKey || !state.privateKey}
-        >
-          Download Both Keys
-        </button>
+      <h1>PGP Key Generator</h1>
+      <p>Part of rdjpalmer's encryption project? <a href="https://github.com/rdjpalmer/pgp-generator/issues/2" target="_blank" rel="nonoopener noreferrer">Publish your public key here on GitHub</a>.</p>
+      <div className="body">
+        <div className="form">
+          <input
+            type="text"
+            placeholder="Name"
+            value={state.name}
+            onChange={(e) => dispatch({ type: 'SET_NAME', payload: e.target.value })}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={state.email}
+            onChange={(e) => dispatch({ type: 'SET_EMAIL', payload: e.target.value })}
+          />
+          <button onClick={generateKeysAndCertificate} disabled={!state.name || !state.email}>Generate Keys & Certificate</button>
+        </div>
+        <div className="actions">
+          <button
+            onClick={() => download('public-key', state.publicKey)}
+            disabled={!state.publicKey}
+          >
+            Download Public Key
+          </button>
+          <button
+            onClick={() => download('private-key', state.privateKey)}
+            disabled={!state.privateKey}
+          >
+            Download Private Key
+          </button>
+          <button
+            onClick={() => download('revocation-certificate', state.revocationCertificate)}
+            disabled={!state.revocationCertificate}
+          >
+            Download Revocation Certificate
+          </button>
+          <button
+            onClick={() => download('pgp-keys', `${state.publicKey}\n${state.privateKey}`)}
+            disabled={!state.publicKey || !state.privateKey}
+          >
+            Download Both Keys
+          </button>
+        </div>
       </div>
     </div>
   );
